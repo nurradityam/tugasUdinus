@@ -10,6 +10,8 @@ main()
    int jumlahBeli;
    long kembalian;
 
+   int debug1 = 1;
+
    cout << "===================================" << endl;
    cout << "Masukkan Kode Pelanggan : "; cin >> pelangganKode; endl;
    cout << "Masukkan Nama Pelanggan : "; gets(pelangganNama); endl; endl;
@@ -25,49 +27,49 @@ main()
 
    switch (barangKode)
    {
-   	case '1':
-      	cout << "===================================" << endl;
+	case '1':
+		cout << "===================================" << endl;
       	cout << "Anda membeli sandal swallow" << endl << endl;
         cout << "Anda mau beli berapa? "; cin >> jumlahBeli;
 
-        strcpy(barangNama, "Sandal Swallow");
-      	hargaSatuan = 60000;
+       	strcpy(barangNama, "Sandal Swallow");
+      	hargaSatuan = 20000;
         hargaTotal = hargaSatuan * jumlahBeli;
 
-        if (hargaTotal >= 50000) diskon = 0.02;
-        else if (hargaTotal >= 10000) diskon = 0.035;
-        else diskon = 0;
+        	if (hargaTotal >= 50000) diskon = 0.02;
+        	else if (hargaTotal >= 10000) diskon = 0.035;
+        	else diskon = 0;
 
       	break;
 
       case '2':
       	cout << "===================================" << endl;
       	cout << "Anda membeli Fidget Spinner" << endl;
-        cout << "Anda mau beli berapa? "; cin >> jumlahBeli;
+        	cout << "Anda mau beli berapa? "; cin >> jumlahBeli;
 
-        strcpy(barangNama, "Fidget Spinner");
+        	strcpy(barangNama, "Fidget Spinner");
       	hargaSatuan = 30000;
-        hargaTotal = hargaSatuan * jumlahBeli;
+        	hargaTotal = hargaSatuan * jumlahBeli;
 
-        if (hargaTotal >= 60000) diskon = 0.03;
-        else if (hargaTotal >= 150000) diskon = 0.05;
-        else if (hargaTotal > 200000) diskon = 0.65;
+        	if (hargaTotal >= 200000) diskon = 0.65;
+        	else if (hargaTotal >= 150000) diskon = 0.05;
+        	else if (hargaTotal >= 60000) diskon = 0.03;
 
       	break;
 
       case '3':
-        cout << "===================================" << endl;
+        	cout << "===================================" << endl;
       	cout << "Anda membeli Mouse Razer" << endl;
-        cout << "Anda mau beli berapa? "; cin >> jumlahBeli;
+        	cout << "Anda mau beli berapa? "; cin >> jumlahBeli;
 
-        strcpy(barangNama, "Mouse Razer");
+        	strcpy(barangNama, "Mouse Razer");
       	hargaSatuan = 10000;
          hargaTotal = hargaSatuan * jumlahBeli;
 
-        if (hargaTotal >= 75000) diskon = 0.033;
-        else if (hargaTotal >= 150000) diskon = 0.055;
-        else if (hargaTotal >= 20000) diskon = 0.15;
-      	else diskon = 0;
+        	if (hargaTotal >= 150000) diskon = 0.055;
+        	else if (hargaTotal >= 75000) diskon = 0.033;
+        	else if (hargaTotal > 20000) diskon = 0.15;
+      	else if (hargaTotal <= 20000) diskon = 0;
 
       	break;
    }
@@ -87,7 +89,8 @@ main()
    cout << "Harga Sebelum Diskon \t: " << hargaTotal << endl;
    cout << "Harga Sesudah Diskon \t: " << hargaDiskon << endl;
    cout << "Kembalian \t\t: " << kembalian << endl;
+   cout<<"DEBUG :"<<diskon<<endl;
    cout << "===========================================" << endl;
 
-	 getch();
+   getch();
 }
