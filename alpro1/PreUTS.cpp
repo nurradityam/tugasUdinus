@@ -3,19 +3,15 @@
 #include <stdio.h>
 
 main(){
-
 	// deklarasi variabel
-	char nama[50], kode[50], tipe, ulangiProgram;
+	char nama[50], kode[50], tipeInput, tipe[50], ulangiProgramInput;
 	float meterLama, meterBaru, diskon, jumlahBayar, jumlahPakai, tarif;
-	bool lagi, lagiTipe;
+	bool ulangiTipe, ulangiProgram;
 	long kembalian, totalSemua, totalBayar, totalAkhir;
-	
-	// inisialisasi variabel
-	lagi = false;
-	lagiTipe = false;
 	
 	do{
 		// input pertama
+		clrscr();
 		cout << "=========================================================" << endl;
 		cout << "Masukkan Nama Pelanggan : "; gets(nama);
 		cout << "Masukkan Kode Pelanggan : "; cin >> kode;
@@ -27,17 +23,17 @@ main(){
 		// input kedua
 		do{
 			clrscr();
-			
 			cout << "=========================================================" << endl;
 			cout << "Daftar Tipe Pelanggan :" << endl;
 			cout << "A. Perumahan." << endl;
 			cout << "B. Perusahaan." << endl;
 			cout << "C. Supermarket." << endl << endl;
-			cout << "Masukkan Tipe Sesuai Huruf : "; cin >> tipe;
+			cout << "Masukkan Tipe Sesuai Huruf : "; cin >> tipeInput;
 
-			switch(tipe){
+			switch(tipeInput){
 				case 'a':
 				case 'A':
+					strcpy(tipe, "Perumahan");
 					tarif = 10000;
 					totalSemua = tarif * jumlahPakai;
 					
@@ -54,12 +50,13 @@ main(){
 						totalAkhir = totalSemua - diskon;
 					}
 					
-					lagiTipe = false;
+					ulangiTipe = 0;
 
 					break;
 
 				case 'b':
 				case 'B':
+					strcpy(tipe, "Perusahaan");
 					tarif = 40000;
 					totalSemua = tarif * jumlahPakai;
 					
@@ -76,12 +73,13 @@ main(){
 						totalAkhir = totalSemua - diskon;
 					}
 					
-					lagiTipe = false;
+					ulangiTipe = 0;
 
 					break;
 					
 				case 'c':
 				case 'C':
+					strcpy(tipe, "Supermarket");
 					tarif = 20000;
 					totalSemua = tarif * jumlahPakai;
 					
@@ -98,21 +96,22 @@ main(){
 						totalAkhir = totalSemua - diskon;
 					}
 					
-					lagiTipe = false;
+					ulangiTipe = 0;
 
 					break;
 					
 				default:
 					clrscr();
+					cout << "=========================================================" << endl;
 					cout << "Kode Yang Anda Masukkan Salah!" << endl;
 					cout << "Tekan ENTER untuk mengulangi input!";
 					getch();
 					
-					lagiTipe = true;
+					ulangiTipe = 1;
 					
 					break;
 			}
-		} while(lagiTipe == true);
+		} while(ulangiTipe == 1);
 		
 		// output hasil
 		clrscr();
@@ -135,21 +134,27 @@ main(){
 		clrscr();
 		cout << "=========================================================" << endl;
 		cout << "Kembalian anda : " << kembalian << endl << endl;
-		cout << "Apakah anda ingin input data lagi (Y/N)? "; cin >> ulangiProgram;
+		cout << "Apakah anda ingin input data lagi (Y/N)? "; cin >> ulangiProgramInput;
 		
-		switch(ulangiProgram){
+		switch(ulangiProgramInput){
 			case 'y':
 			case 'Y':
-				lagi = true;
-				
-				clrscr();
+				ulangiProgram = true;
 				
 				break;
 				
 			default:
-				lagi = false;
+				ulangiProgram = false;
 				
 				break;
 		}
-	} while(lagi == true);
+	} while(ulangiProgram == true);
+	
+	// output salam penutup
+	clrscr();
+	cout << "=========================================================" << endl;
+	cout << "Terima Kasih :)" << endl << endl;
+	cout << "Tekan ENTER untuk keluar aplikasi";
+	
+	getch();
 }
