@@ -7,7 +7,7 @@ main(){
 	int iterasi; //variabel pembantu untuk pengulangan
 	int langkah = 0; //biar tahu ini input ke brp
 	double nilaiTotal, nilaiTerkecil, nilaiTerbesar; 
-	int indexTerkecil, indexTerbesar;
+	int indexTerkecil = 0, indexTerbesar = 0;
 	char lagi = 'n';
 	
 	do{
