@@ -47,8 +47,8 @@ void sorting(){
 	
 	// laporan statistik
 	cout << endl << endl;
-	cout << "Jumlah tahapan\t: " << jumlahData-1 << endl;
-	cout << "Jumlah komparasi\t: " << jumlahData-1 << endl;
+	cout << "Jumlah tahapan\t: " << (jumlahData-1) << endl;
+	cout << "Jumlah komparasi\t: " << (jumlahData-1) << endl;
 	cout << "Jumlah tukar\t: " << counterTukar << endl;
 	cout << "Hasil urutan\t: "; loopCetakData();
 }
