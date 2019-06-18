@@ -22,7 +22,6 @@ void loopCetakData(){
 void sorting(){
 	/// referensi: https://www.geeksforgeeks.org/selection-sort/
 	int counterTukar = 0,
-		counterKom
 		indexTerkecil,
 		i, j, t;
 	
