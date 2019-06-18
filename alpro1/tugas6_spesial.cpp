@@ -21,8 +21,7 @@ void loopCetakData(){
 }
 void sorting(){
 	/// referensi: https://www.geeksforgeeks.org/selection-sort/
-	int counterTukar = 0,
-		indexTerkecil,
+	int indexTerkecil,
 		i, j, t;
 	
 	for(i=0; i < jumlahData-1; i++){
@@ -38,8 +37,6 @@ void sorting(){
 				t = data[indexTerkecil];
 				data[indexTerkecil] = data[i];
 				data[i] = t;
-				
-				counterTukar++; // menghitung pertukaran yg terjadi
 			}
 			loopCetakData();
 		}
@@ -47,16 +44,13 @@ void sorting(){
 	
 	// laporan statistik
 	cout << endl << endl;
-	cout << "Jumlah tahapan\t: " << (jumlahData-1) << endl;
-	cout << "Jumlah komparasi\t: " << (jumlahData-1) << endl;
-	cout << "Jumlah tukar\t: " << counterTukar << endl;
 	cout << "Hasil urutan\t: "; loopCetakData();
 }
 
 void input(){
 	do{
 		clrscr();
-		cout << "===PROGRAM BUBBLE SORT===" << endl << endl;
+		cout << "===PROGRAM SELECTION SORT===" << endl << endl;
 		
 		// peringatan jika sudah input namun nilai diatas maksInput
 		if(jumlahData > maksInput){
