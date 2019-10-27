@@ -3,25 +3,26 @@
 ///NIM		: A12.2018.06015
 ///Repo		: github.com/nurradityam/tugasUdinus/tree/master/alpro2
 //////////////////////////////////////////////////////////////////////
-// raceto dikon gawe stack opo queue, kode iki asale antrian, trs tk tambah fx pop
 #include <iostream.h>
 #include <conio.h>
+#include <stdio.h>
 
 /// global variable
 const int batasEntri = 10; // menentukan jumlah array data
 
 struct structData{
-    int id;
-    int golongan;
-    int dayaLama;
-    int dayaBaru;
+    int     id;
+    char    nama[20];
+    int     dayaLama;
+    int     dayaBaru;
+    long    tarif;
 };
 
 structData data[batasEntri];
 
 int index = 0; // variabel global untuk mengetahui index keberapa yang terisi
 
-/// class
+/// function
 void enqueue(){
     if(index == batasEntri){
         cout << "Stack Penuh !";
@@ -33,10 +34,11 @@ void enqueue(){
     clrscr();
     cout << "Ini data pada index ke [" << index << "]"  << endl;
     cout << "=========================================" << endl;
-    cout << "1. No Pelanggan : ";   cin >> data[index].id;
-    cout << "2. Golongan : ";       cin >> data[index].golongan;
-    cout << "3. Daya Lama : ";      cin >> data[index].dayaLama;
-    cout << "4. Daya Baru : ";      cin >> data[index].dayaBaru;
+    cout << "1. No Pelanggan : ";       cin >> data[index].id;
+    cout << "2. Nama : ";               gets(data[index].nama); 
+    cout << "3. Meter Lama : ";         cin >> data[index].dayaLama;
+    cout << "4. Meter Sekarang : ";     cin >> data[index].dayaBaru;
+    cout << "5. Tarif : ";              cin >> data[index].tarif;
 
     index++;
 }
@@ -56,12 +58,6 @@ void dequeue(){
         data[a] = data[(a+1)];
     }
 
-    // REVIEW: hawane secara teknis rausah nganggo kenek an
-    data[(index-1)].id = NULL;
-    data[(index-1)].golongan = NULL;
-    data[(index-1)].dayaLama = NULL;
-    data[(index-1)].dayaBaru = NULL;
-
     index--;
 
     getch();
@@ -77,12 +73,6 @@ void pop(){
 
 	cout << "Nomor pelanggan pada stack paling atas = " << data[index-1].id << " ,berhasil di pop" << endl;
 
-    // REVIEW: hawane secara teknis rausah nganggo kenek an
-    data[(index-1)].id = NULL;
-    data[(index-1)].golongan = NULL;
-    data[(index-1)].dayaLama = NULL;
-    data[(index-1)].dayaBaru = NULL;
-
     index--;
 
     getch();
@@ -95,17 +85,19 @@ void view(){
     clrscr();
     gotoxy(11+x,2); cout << "++++++++++++++++++++++++++++++Laporan Daftar Tunggu Perubahan Daya Listrik++++++++++++++++++++++++++++++";
 	gotoxy(11+x,3); cout << "+------+---------------+---------------+---------------+---------------+---------------+---------------+";
-	gotoxy(11+x,4); cout << "| No   | No.Pelanggan  | Golongan      | Daya Lama     | Daya Baru     | Bayar         |               |";
+	gotoxy(11+x,4); cout << "| No   | No.Pelanggan  | Nama          | Meter Lalu    | Meter Sekarang| Tarif         | Bayar         |";
 	gotoxy(11+x,5); cout << "+------+---------------+---------------+---------------+---------------+---------------+---------------+";
 
     for(i=0; i < index; i++){
-			gotoxy(11+x,6+i); 	cout << "| " << i; 					    gotoxy(18+x,6+i);   cout << "|";
-			gotoxy(20+x,6+i); 	cout << 		data[i].id;				gotoxy(34+x,6+i); 	cout << "|";
-			gotoxy(36+x,6+i); 	cout << 		data[i].golongan;	    gotoxy(50+x,6+i); 	cout << "|";
-			gotoxy(52+x,6+i); 	cout << 		data[i].dayaLama;  		gotoxy(66+x,6+i); 	cout << "|";
-			gotoxy(68+x,6+i); 	cout << 		data[i].dayaBaru;  		gotoxy(82+x,6+i);	cout << "|";
-			//gotoxy(84+x,6+i); 	cout << 		data[i].tunjanganAnak;  	gotoxy(98,6+i); 	cout << "|";
-			//gotoxy(100+x,6+i); 	cout << 		data[i].gajiKotor;  		gotoxy(114,6+i); 	cout << "|";
+            long bayar = (data[i].dayaBaru - data[i].dayaLama) * data[i].tarif;
+
+			gotoxy(11+x,6+i); 	cout << "| " << i; 			        gotoxy(18+x,6+i);   cout << "|";
+			gotoxy(20+x,6+i); 	cout << 		data[i].id;		    gotoxy(34+x,6+i); 	cout << "|";
+			gotoxy(36+x,6+i); 	cout << 		data[i].nama;	    gotoxy(50+x,6+i); 	cout << "|";
+			gotoxy(52+x,6+i); 	cout << 		data[i].dayaLama;   gotoxy(66+x,6+i); 	cout << "|";
+			gotoxy(68+x,6+i); 	cout << 		data[i].dayaBaru;   gotoxy(82+x,6+i);	cout << "|";
+			gotoxy(84+x,6+i); 	cout << 		data[i].tarif;      gotoxy(98+x,6+i); 	cout << "|";
+			gotoxy(100+x,6+i); 	cout << 		bayar;  		    gotoxy(114+x,6+i); 	cout << "|";
     }
 
 	gotoxy(11+x,6+i); cout << "+------+---------------+---------------+---------------+---------------+---------------+---------------+";
@@ -132,8 +124,8 @@ void main(){
                 break;
 
             case 2:
-                //dequeue();
-                pop();
+                dequeue();
+                //pop();
                 break;
 
             case 3:
