@@ -5,7 +5,7 @@
 //////////////////////////////////////////////////////////////////////
 #include <iostream.h>
 #include <conio.h>
-//#include <stdio.h>
+#include <stdio.h>
 
 // deklarasi struct
 struct node
@@ -142,19 +142,23 @@ int cari()
     temp = head;
     long idPelangganDicari = 0;
     int orderNumber = 1;
-    
+
     cout << "Nomer Pelanggan Yang Dicari : "; cin >> idPelangganDicari;
 
     while (temp != NULL)
     {
         if (idPelangganDicari == temp->id)
         {
-            // fix me, gk bs concat
-            laporanDataNodeSpesifik("Data ditemukan pada nomor urutan " + orderNumber, 
-                        tail->id, 
-                        tail->nama, 
-                        tail->golongan, 
-                        tail->pemakaian);
+            // kuno tenan revisi c++ borland kui, concat karo tostring ribet
+            // jane tk passing ke parameter wae
+            laporanDataNodeSpesifik("Isi Node", 
+                                    temp->id, 
+                                    temp->nama, 
+                                    temp->golongan, 
+                                    temp->pemakaian);
+
+            cout << endl << "Data ditemukan pada urutan ke " << orderNumber;
+            getch();
             
             return 0;
         }
@@ -198,7 +202,7 @@ void laporanDataNodeUrut(int argMode)
     int i = 1; // variabel pembantu iterasi
 
     clrscr();
-	gotoxy(11+x,3+y); cout << "++++++++++++++++++++++++++++++++++++++++++++++++LAPORAN+++++++++++++++++++++++++++++++++";
+	gotoxy(11+x,3+y); cout << "++++++++++++++++++++++++++++++++++++++LAPORAN+++++++++++++++++++++++++++++++++++++++++++";
 	gotoxy(11+x,4+y); cout << "+------+---------------+---------------+---------------+---------------+---------------+";
 	gotoxy(11+x,5+y); cout << "| No   | No. Pelanggan | Nama          | Golongan      | Pemakaian     | Bayar         |";
 	gotoxy(11+x,6+y); cout << "+------+---------------+---------------+---------------+---------------+---------------+";
@@ -344,7 +348,7 @@ void menu()
         // TAMBAH BELAKANG
         case 4 :
             belakangTambah(); 
-            notif(0, "Data Berhasil Ditambahkan di Node tail!");
+            notif(0, "Data Berhasil Ditambahkan di Node TAIL!");
             break;
 
         // HAPUS BELAKANG
